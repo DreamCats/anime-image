@@ -1,2 +1,10 @@
 # AnimeImage
-自动下载用户想要的二次元动漫图片（你懂的）
+## Info
+
+**Author: Mai feng**
+**file_name: README.md** 
+**time: 2019:01:18** 
+**下载动漫二次元壁纸**
+
+-------
+
