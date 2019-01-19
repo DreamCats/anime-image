@@ -7,10 +7,16 @@ class Anime(object):
     def __init__(self, keyword):
         # 用户的关键词
         self.keyword = keyword
-        # url
-        self.url = 'https://wall.alphacoders.com/search.php?search={keyword}&lang=Chinese'.format(keyword=keyword)
         # base_url 
         self.base_url = 'https://wall.alphacoders.com/'
+        # search_url
+        self.search_url = 'https://wall.alphacoders.com/search.php'
+        # search_params
+        self.search_params = {
+            'search':keyword,
+            'lang':'Chinese',
+            'page':'1' # 默认
+        }
         # post_url 获取真实链接
         self.post_url = 'https://wall.alphacoders.com/get_download_link.php'
         # 实例 requests.session
@@ -44,10 +50,14 @@ class Anime(object):
         '''获取url链接
         '''
         try:
-            res_url = self.s.get(url=self.url)
+            res_url = self.s.get(url=self.search_url, params=self.search_params)
             if res_url.status_code == 200:
                 doc = pq(res_url.text)
                 number = doc('#container_page h1 i').text()
+                temp_page = int(number) % 30 
+                total_page = int(number) // 30
+                if temp_page > 0:
+                    total_page = total_page + 1        
                 if number:
                     print('一共搜到了%s张壁纸' %number)
                     items = doc('.boxgrid a').items()
@@ -57,6 +67,15 @@ class Anime(object):
                         download_url = self.parse_url(url)
                         # 下载
                         self.download(download_url)
+                    this_page = int(self.search_params['page'])
+                    # 翻页下载。
+                    if this_page < total_page:
+                        print('第' + str(this_page) + '页下载完毕... \n')
+                        self.search_params['page'] = this_page + 1
+                        return self.get_img_url()
+                    else:
+                        print('全部下载完毕...')
+                        return None
                 else:
                     print('没有相应的动漫壁纸...')
                     return None
@@ -120,5 +139,6 @@ class Anime(object):
 
 if __name__ == "__main__":
     anime = Anime('约会大作战')
+    anime = Anime('中二病也要谈恋爱')
     # anime = Anime('nonono')
     anime.run()
