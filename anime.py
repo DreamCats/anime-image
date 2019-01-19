@@ -132,13 +132,18 @@ class Anime(object):
     def run(self):
         '''run的流程
         '''
-        self.is_user_dir()
-        self.get_img_url()
-        pass
+        user_cmd = input('请输入壁纸的名字，尽量是某番的名字...\n')
+        if user_cmd != 'q':
+            self.is_user_dir()
+            self.get_img_url()
+        elif user_cmd == 'q':
+            exit()
+        else:
+            self.run()
 
 
 if __name__ == "__main__":
-    anime = Anime('约会大作战')
-    anime = Anime('中二病也要谈恋爱')
+    # anime = Anime('约会大作战')
+    # anime = Anime('中二病也要谈恋爱')
     # anime = Anime('nonono')
     anime.run()
