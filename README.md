@@ -10,7 +10,8 @@
 ## 更新时间：2019.1.20
 ## 测试完毕（mac）
 ## 步骤
-1. 根目录下运行`python anime.py`即可
+1. 根目录下运行`pip install -r requirements.txt`
+2. 安装环境之后，接着运行`python anime.py` 注意：python3环境
 2. 按照提示输入即可
 -------
 
