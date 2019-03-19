@@ -13,13 +13,15 @@
 ## 更新说明
 1. 更新了部分标签
 2. 运行步骤没有变
+3. 可以测试输入 `约会大作战` 进行测试...
+
 -------
 ## 更新时间：2019.1.20
 ## 测试完毕（mac）
 ## 步骤
 1. 根目录下运行`pip install -r requirements.txt`
 2. 安装环境之后，接着运行`python anime.py` 注意：python3环境
-2. 按照提示输入即可
+3. 按照提示输入即可
 -------
 
 ## [Anime](https://wall.alphacoders.com/?lang=Chinese)
