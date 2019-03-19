@@ -53,12 +53,13 @@ class Anime(object):
             res_url = self.s.get(url=self.search_url, params=self.search_params)
             if res_url.status_code == 200:
                 doc = pq(res_url.text)
-                number = doc('#container_page h1 i').text()
-                temp_page = int(number) % 30 
-                total_page = int(number) // 30
-                if temp_page > 0:
-                    total_page = total_page + 1        
+                number = doc('#page_container h1').text()       
                 if number:
+                    number = number.split('张')[0]
+                    temp_page = int(number) % 30 
+                    total_page = int(number) // 30
+                    if temp_page > 0:
+                        total_page = total_page + 1 
                     print('一共搜到了%s张壁纸' %number)
                     items = doc('.boxgrid a').items()
                     for item in items:
