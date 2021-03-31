@@ -5,7 +5,7 @@ cssselect==1.0.3
 idna==2.8
 isort==4.3.4
 lazy-object-proxy==1.3.1
-lxml==4.3.0
+lxml==4.6.3
 mccabe==0.6.1
 pylint==2.2.2
 pyquery==1.4.0
